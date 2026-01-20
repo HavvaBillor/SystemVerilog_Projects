@@ -1,5 +1,5 @@
 # vsim -c -work work tb_ALU -do "vcd file wave.vcd; vcd add -r /*; run -all; quit" 
-# Start time: 15:50:21 on Jan 20,2026
+# Start time: 16:47:41 on Jan 20,2026
 # Loading sv_std.std
 # Loading work.tb_ALU
 # Loading work.ALU
@@ -7,7 +7,7 @@
 #  vcd add -r /*
 #  run -all
 # ** Info: INFO: ALU Testbench Started...
-#    Time: 10 ns  Scope: tb_ALU File: tb/tb_ALU.sv Line: 63
+#    Time: 10 ns  Scope: tb_ALU File: tb/tb_ALU.sv Line: 65
 # ** Info: INFO: Op_code:000 A:2 B:2, Result:4
 #    Time: 31 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
 # ** Info: INFO: Op_code:000 A:0 B:0, Result:0
@@ -109,8 +109,8 @@
 # ** Info: INFO: Op_code:100 A:7 B:5, Result:7
 #    Time: 1011 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
 # ** Info: INFO: ALU Test Finished Successfully!
-#    Time: 1111 ns  Scope: tb_ALU File: tb/tb_ALU.sv Line: 72
-# ** Note: $finish    : tb/tb_ALU.sv(73)
+#    Time: 1111 ns  Scope: tb_ALU File: tb/tb_ALU.sv Line: 74
+# ** Note: $finish    : tb/tb_ALU.sv(75)
 #    Time: 1111 ns  Iteration: 0  Instance: /tb_ALU
-# End time: 15:50:22 on Jan 20,2026, Elapsed time: 0:00:01
+# End time: 16:47:42 on Jan 20,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0

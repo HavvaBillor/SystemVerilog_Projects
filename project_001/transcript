@@ -1,0 +1,116 @@
+# vsim -c -work work tb_ALU -do "vcd file wave.vcd; vcd add -r /*; run -all; quit" 
+# Start time: 15:50:21 on Jan 20,2026
+# Loading sv_std.std
+# Loading work.tb_ALU
+# Loading work.ALU
+# vcd file wave.vcd
+#  vcd add -r /*
+#  run -all
+# ** Info: INFO: ALU Testbench Started...
+#    Time: 10 ns  Scope: tb_ALU File: tb/tb_ALU.sv Line: 63
+# ** Info: INFO: Op_code:000 A:2 B:2, Result:4
+#    Time: 31 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:000 A:0 B:0, Result:0
+#    Time: 51 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:000 A:5 B:6, Result:11
+#    Time: 71 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:000 A:4 B:-1, Result:3
+#    Time: 91 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:000 A:-5 B:-5, Result:-10
+#    Time: 111 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:000 A:1 B:0, Result:1
+#    Time: 131 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:000 A:-6 B:3, Result:-3
+#    Time: 151 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:000 A:-4 B:-3, Result:-7
+#    Time: 171 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:000 A:-3 B:-6, Result:-9
+#    Time: 191 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:000 A:6 B:-1, Result:5
+#    Time: 211 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:001 A:3 B:-8, Result:11
+#    Time: 231 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:001 A:0 B:5, Result:-5
+#    Time: 251 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:001 A:2 B:-5, Result:7
+#    Time: 271 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:001 A:2 B:1, Result:1
+#    Time: 291 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:001 A:-3 B:4, Result:-7
+#    Time: 311 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:001 A:-5 B:-6, Result:1
+#    Time: 331 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:001 A:1 B:6, Result:-5
+#    Time: 351 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:001 A:6 B:5, Result:1
+#    Time: 371 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:001 A:6 B:-8, Result:14
+#    Time: 391 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:001 A:4 B:1, Result:3
+#    Time: 411 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:010 A:7 B:-3, Result:-21
+#    Time: 431 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:010 A:2 B:-7, Result:-14
+#    Time: 451 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:010 A:4 B:-3, Result:-12
+#    Time: 471 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:010 A:-4 B:-5, Result:20
+#    Time: 491 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:010 A:-4 B:0, Result:0
+#    Time: 511 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:010 A:0 B:-4, Result:0
+#    Time: 531 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:010 A:1 B:-3, Result:-3
+#    Time: 551 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:010 A:-3 B:6, Result:-18
+#    Time: 571 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:010 A:-7 B:2, Result:-14
+#    Time: 591 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:010 A:3 B:5, Result:15
+#    Time: 611 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:011 A:-2 B:5, Result:4
+#    Time: 631 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:011 A:6 B:-8, Result:0
+#    Time: 651 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:011 A:7 B:7, Result:7
+#    Time: 671 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:011 A:3 B:5, Result:1
+#    Time: 691 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:011 A:-8 B:1, Result:0
+#    Time: 711 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:011 A:-1 B:-8, Result:-8
+#    Time: 731 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:011 A:-4 B:-4, Result:-4
+#    Time: 751 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:011 A:-4 B:-4, Result:-4
+#    Time: 771 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:011 A:-7 B:3, Result:1
+#    Time: 791 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:011 A:-6 B:-4, Result:-8
+#    Time: 811 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:100 A:3 B:7, Result:7
+#    Time: 831 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:100 A:-6 B:5, Result:-1
+#    Time: 851 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:100 A:4 B:0, Result:4
+#    Time: 871 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:100 A:-7 B:-2, Result:-1
+#    Time: 891 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:100 A:-6 B:-7, Result:-5
+#    Time: 911 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:100 A:-5 B:-2, Result:-1
+#    Time: 931 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:100 A:5 B:4, Result:5
+#    Time: 951 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:100 A:-1 B:4, Result:-1
+#    Time: 971 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:100 A:6 B:-2, Result:-2
+#    Time: 991 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: Op_code:100 A:7 B:5, Result:7
+#    Time: 1011 ns  Scope: tb_ALU.check_operation File: tb/tb_ALU.sv Line: 55
+# ** Info: INFO: ALU Test Finished Successfully!
+#    Time: 1111 ns  Scope: tb_ALU File: tb/tb_ALU.sv Line: 72
+# ** Note: $finish    : tb/tb_ALU.sv(73)
+#    Time: 1111 ns  Iteration: 0  Instance: /tb_ALU
+# End time: 15:50:22 on Jan 20,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

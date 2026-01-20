@@ -1,0 +1,63 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/subat/SystemVerilog_Projects/project_001
+vALU
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z2 !s110 1768913420
+!i10b 1
+!s100 Qb`PEU@:?8cDGI]:;@U@l1
+Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IdLGBUfoM8lc><<?YDS^ao3
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+S1
+R0
+w1768913109
+8rtl/ALU.sv
+Frtl/ALU.sv
+!i122 2
+L0 2 36
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z6 !s108 1768913420.000000
+!s107 rtl/ALU.sv|
+!s90 -work|work|rtl/ALU.sv|
+!i113 1
+Z7 o-work work
+Z8 tCvgOpt 0
+n@a@l@u
+vtb_ALU
+R1
+R2
+!i10b 1
+!s100 fhl`zT10UUELfJ<]k_W[S1
+R3
+ICQe?B47<o9jICHY][o`c81
+R4
+S1
+R0
+w1768913409
+8tb/tb_ALU.sv
+Ftb/tb_ALU.sv
+!i122 3
+L0 1 77
+R5
+r1
+!s85 0
+31
+R6
+!s107 tb/tb_ALU.sv|
+!s90 -work|work|tb/tb_ALU.sv|
+!i113 1
+R7
+R8
+ntb_@a@l@u

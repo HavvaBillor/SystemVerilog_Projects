@@ -1,0 +1,63 @@
+# vsim -c -work work tb_gray_code -do "vcd file wave.vcd; vcd add -r /*; run -all; quit" 
+# Start time: 15:50:52 on Jan 24,2026
+# Loading sv_std.std
+# Loading work.tb_gray_code
+# Loading work.gray_code
+# vcd file wave.vcd
+#  vcd add -r /*
+#  run -all
+# ** Info: 
+# --- TEST STARTED ---
+#    Time: 25 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 38
+# ** Info:  INFO: Time	Bin	Gray	Check
+#    Time: 25 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 39
+# ** Info: ---------------------------------------
+#    Time: 25 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 40
+# ** Info: INFO: Time:32000	 Binary_out:0	 Gray_out:0000	 Check_binary:0
+#    Time: 32 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:52000	 Binary_out:1	 Gray_out:0001	 Check_binary:1
+#    Time: 52 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:72000	 Binary_out:2	 Gray_out:0011	 Check_binary:2
+#    Time: 72 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:92000	 Binary_out:3	 Gray_out:0010	 Check_binary:3
+#    Time: 92 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:112000	 Binary_out:4	 Gray_out:0110	 Check_binary:4
+#    Time: 112 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:132000	 Binary_out:5	 Gray_out:0111	 Check_binary:5
+#    Time: 132 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:152000	 Binary_out:6	 Gray_out:0101	 Check_binary:6
+#    Time: 152 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:172000	 Binary_out:7	 Gray_out:0100	 Check_binary:7
+#    Time: 172 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:192000	 Binary_out:8	 Gray_out:1100	 Check_binary:8
+#    Time: 192 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:212000	 Binary_out:9	 Gray_out:1101	 Check_binary:9
+#    Time: 212 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:232000	 Binary_out:10	 Gray_out:1111	 Check_binary:10
+#    Time: 232 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:252000	 Binary_out:11	 Gray_out:1110	 Check_binary:11
+#    Time: 252 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:272000	 Binary_out:12	 Gray_out:1010	 Check_binary:12
+#    Time: 272 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:292000	 Binary_out:13	 Gray_out:1011	 Check_binary:13
+#    Time: 292 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:312000	 Binary_out:14	 Gray_out:1001	 Check_binary:14
+#    Time: 312 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:332000	 Binary_out:15	 Gray_out:1000	 Check_binary:15
+#    Time: 332 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:352000	 Binary_out:0	 Gray_out:0000	 Check_binary:0
+#    Time: 352 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:372000	 Binary_out:1	 Gray_out:0001	 Check_binary:1
+#    Time: 372 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:392000	 Binary_out:2	 Gray_out:0011	 Check_binary:2
+#    Time: 392 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: INFO: Time:412000	 Binary_out:3	 Gray_out:0010	 Check_binary:3
+#    Time: 412 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 48
+# ** Info: ---------------------------------------
+#    Time: 412 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 53
+# ** Info: INFO: TEST COMPLETED! EXAMINE RESULTS.
+#    Time: 412 ns  Scope: tb_gray_code File: tb/tb_gray_code.sv Line: 54
+# ** Note: $finish    : tb/tb_gray_code.sv(55)
+#    Time: 412 ns  Iteration: 0  Instance: /tb_gray_code
+# End time: 15:50:53 on Jan 24,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

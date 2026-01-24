@@ -1,0 +1,61 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/subat/SystemVerilog_Projects/project_004
+vgray_code
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z2 !s110 1769259051
+!i10b 1
+!s100 M?WzTM9g^[e0kFel8QXId3
+Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IQ_71EVm]EMJ2KPMQAfeAJ1
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+S1
+R0
+w1769257523
+8rtl/gray_code.sv
+Frtl/gray_code.sv
+!i122 10
+L0 1 26
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z6 !s108 1769259051.000000
+!s107 rtl/gray_code.sv|
+!s90 -work|work|rtl/gray_code.sv|
+!i113 1
+Z7 o-work work
+Z8 tCvgOpt 0
+vtb_gray_code
+R1
+R2
+!i10b 1
+!s100 fDi`eCd@[WV^^]Mk9^4[N0
+R3
+IRLZPnkdR03C6J5^YW`oSE1
+R4
+S1
+R0
+w1769259021
+8tb/tb_gray_code.sv
+Ftb/tb_gray_code.sv
+!i122 11
+L0 3 58
+R5
+r1
+!s85 0
+31
+R6
+!s107 tb/tb_gray_code.sv|
+!s90 -work|work|tb/tb_gray_code.sv|
+!i113 1
+R7
+R8

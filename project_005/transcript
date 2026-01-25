@@ -1,6 +1,6 @@
 # ERROR: No extended dataflow license exists
 # vsim -work work tb_pwm 
-# Start time: 22:13:22 on Jan 24,2026
+# Start time: 14:17:30 on Jan 25,2026
 # Loading sv_std.std
 # Loading work.tb_pwm
 # Loading work.pwm_gen
@@ -23,5 +23,7 @@ run -all
 #    Time: 25000100 ns  Iteration: 0  Instance: /tb_pwm
 # 1
 # Break in Module tb_pwm at tb/tb_pwm.sv line 63
-# End time: 22:15:05 on Jan 24,2026, Elapsed time: 0:01:43
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/subat/SystemVerilog_Projects/project_005/wave.do
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/subat/SystemVerilog_Projects/project_005/wave.do
+# End time: 14:19:36 on Jan 25,2026, Elapsed time: 0:02:06
 # Errors: 0, Warnings: 0

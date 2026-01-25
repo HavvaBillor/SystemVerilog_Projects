@@ -1,4 +1,3 @@
-
 module pwm_gen #(
     parameter CLK_FREQ = 50_000_000,
     parameter PWM_FREQ = 1_000
@@ -38,5 +37,3 @@ module pwm_gen #(
 
 
 endmodule
-
-

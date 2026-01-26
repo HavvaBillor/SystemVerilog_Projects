@@ -1,0 +1,79 @@
+# vsim -c -work work tb_sync_fifo -do "vcd file wave.vcd; vcd add -r /*; run -all; quit" 
+# Start time: 20:30:20 on Jan 26,2026
+# Loading sv_std.std
+# Loading work.tb_sync_fifo
+# Loading work.wrap_around_fifo
+# vcd file wave.vcd
+#  vcd add -r /*
+#  run -all
+# ** Info: --- TEST SCENARIO IS STARTED ---
+#    Time: 120 ns  Scope: tb_sync_fifo File: tb/tb_sync_fifo.sv Line: 92
+# ** Info: -------------------------------------------------------------------------
+#    Time: 120 ns  Scope: tb_sync_fifo File: tb/tb_sync_fifo.sv Line: 93
+# ** Info: TEST 1: Reading data when FIFO is empty----------------------------------
+#    Time: 120 ns  Scope: tb_sync_fifo File: tb/tb_sync_fifo.sv Line: 94
+# ** Warning: WARNING! You attempted to read data when FIFO and QUE were empty
+#    Time: 151 ns  Scope: tb_sync_fifo.read_fifo File: tb/tb_sync_fifo.sv Line: 69
+# ** Info: -----------------------------------------------------------------------
+#    Time: 171 ns  Scope: tb_sync_fifo File: tb/tb_sync_fifo.sv Line: 98
+# ** Info: TEST 2: Writing data and testing overflow-------------------------------
+#    Time: 171 ns  Scope: tb_sync_fifo File: tb/tb_sync_fifo.sv Line: 99
+# ** Info: INFO: [WRITE] Data: 10 is written
+#    Time: 190 ns  Scope: tb_sync_fifo.write_fifo File: tb/tb_sync_fifo.sv Line: 51
+# ** Info: INFO: [WRITE] Data: 11 is written
+#    Time: 210 ns  Scope: tb_sync_fifo.write_fifo File: tb/tb_sync_fifo.sv Line: 51
+# ** Info: INFO: [WRITE] Data: 12 is written
+#    Time: 230 ns  Scope: tb_sync_fifo.write_fifo File: tb/tb_sync_fifo.sv Line: 51
+# ** Info: INFO: [WRITE] Data: 13 is written
+#    Time: 250 ns  Scope: tb_sync_fifo.write_fifo File: tb/tb_sync_fifo.sv Line: 51
+# ** Info: INFO: [WRITE] Data: 14 is written
+#    Time: 270 ns  Scope: tb_sync_fifo.write_fifo File: tb/tb_sync_fifo.sv Line: 51
+# ** Info: INFO: [WRITE] Data: 15 is written
+#    Time: 290 ns  Scope: tb_sync_fifo.write_fifo File: tb/tb_sync_fifo.sv Line: 51
+# ** Info: INFO: [WRITE] Data: 16 is written
+#    Time: 310 ns  Scope: tb_sync_fifo.write_fifo File: tb/tb_sync_fifo.sv Line: 51
+# ** Info: INFO: [WRITE] Data: 17 is written
+#    Time: 330 ns  Scope: tb_sync_fifo.write_fifo File: tb/tb_sync_fifo.sv Line: 51
+# ** Info: ---------------------------------------------------------------------------
+#    Time: 350 ns  Scope: tb_sync_fifo File: tb/tb_sync_fifo.sv Line: 105
+# ** Info: TEST 3: Reading data-------------------------------------------------------
+#    Time: 350 ns  Scope: tb_sync_fifo File: tb/tb_sync_fifo.sv Line: 106
+# ** Info: INFO: Successful reading: 10
+#    Time: 391 ns  Scope: tb_sync_fifo.read_fifo File: tb/tb_sync_fifo.sv Line: 76
+# ** Info: INFO: Successful reading: 11
+#    Time: 431 ns  Scope: tb_sync_fifo.read_fifo File: tb/tb_sync_fifo.sv Line: 76
+# ** Info: INFO: Successful reading: 12
+#    Time: 471 ns  Scope: tb_sync_fifo.read_fifo File: tb/tb_sync_fifo.sv Line: 76
+# ** Info: INFO: Successful reading: 13
+#    Time: 511 ns  Scope: tb_sync_fifo.read_fifo File: tb/tb_sync_fifo.sv Line: 76
+# ** Info: INFO: Successful reading: 14
+#    Time: 551 ns  Scope: tb_sync_fifo.read_fifo File: tb/tb_sync_fifo.sv Line: 76
+# ** Info: INFO: Successful reading: 15
+#    Time: 591 ns  Scope: tb_sync_fifo.read_fifo File: tb/tb_sync_fifo.sv Line: 76
+# ** Info: INFO: Successful reading: 16
+#    Time: 631 ns  Scope: tb_sync_fifo.read_fifo File: tb/tb_sync_fifo.sv Line: 76
+# ** Info: INFO: Successful reading: 17
+#    Time: 671 ns  Scope: tb_sync_fifo.read_fifo File: tb/tb_sync_fifo.sv Line: 76
+# ** Info: ------------------------------------------------------------------------------
+#    Time: 671 ns  Scope: tb_sync_fifo File: tb/tb_sync_fifo.sv Line: 111
+# ** Info: TEST 4: Simultaneous Read & Write---------------------------------------------
+#    Time: 671 ns  Scope: tb_sync_fifo File: tb/tb_sync_fifo.sv Line: 112
+# ** Info: INFO: [WRITE] Data: a1 is written
+#    Time: 690 ns  Scope: tb_sync_fifo.write_fifo File: tb/tb_sync_fifo.sv Line: 51
+# ** Info: INFO: [WRITE] Data: a2 is written
+#    Time: 710 ns  Scope: tb_sync_fifo.write_fifo File: tb/tb_sync_fifo.sv Line: 51
+# ** Info: INFO: [WRITE] Data: a3 is written
+#    Time: 750 ns  Scope: tb_sync_fifo.write_fifo File: tb/tb_sync_fifo.sv Line: 51
+# ** Info: INFO: Successful reading: a1
+#    Time: 771 ns  Scope: tb_sync_fifo.read_fifo File: tb/tb_sync_fifo.sv Line: 76
+# ** Info: INFO: Successful reading: a2
+#    Time: 831 ns  Scope: tb_sync_fifo.read_fifo File: tb/tb_sync_fifo.sv Line: 76
+# ** Info: INFO: Successful reading: a3
+#    Time: 871 ns  Scope: tb_sync_fifo.read_fifo File: tb/tb_sync_fifo.sv Line: 76
+# ** Info: 
+#  -------------------- TESTS FINISHED SUCCESSFULLY -----------------------
+#    Time: 871 ns  Scope: tb_sync_fifo File: tb/tb_sync_fifo.sv Line: 128
+# ** Note: $finish    : tb/tb_sync_fifo.sv(130)
+#    Time: 971 ns  Iteration: 0  Instance: /tb_sync_fifo
+# End time: 20:30:21 on Jan 26,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1

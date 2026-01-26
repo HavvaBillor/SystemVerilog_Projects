@@ -1,0 +1,161 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/subat/SystemVerilog_Projects/project_006
+vcounter_based_fifo
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z2 !s110 1769448619
+!i10b 1
+!s100 Ql[C^ci0TZ@VF16IhdP9>1
+Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I<S1;O<fC_9I8d@6DP5Eg53
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+S1
+R0
+Z5 w1769447964
+Z6 8rtl/sync_fifo.sv
+Z7 Frtl/sync_fifo.sv
+!i122 12
+L0 5 58
+Z8 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z9 !s108 1769448619.000000
+Z10 !s107 rtl/sync_fifo.sv|
+Z11 !s90 -work|work|rtl/sync_fifo.sv|
+!i113 1
+Z12 o-work work
+Z13 tCvgOpt 0
+vshift_fifo
+R1
+R2
+!i10b 1
+!s100 9bjijX?>;c?YHWOaVci_z1
+R3
+IL`z[4AKYMHKWM2IQ3`X5X0
+R4
+S1
+R0
+R5
+R6
+R7
+!i122 12
+L0 65 55
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 1
+R12
+R13
+vtb_counter_based_fifo
+R1
+!s110 1769439414
+!i10b 1
+!s100 R;IIhXZGBCDOA:oi@UjK^0
+R3
+I40oIJ?:Pzl3Q?W;YCU=R53
+R4
+S1
+R0
+w1769439405
+8tb/tb_counter_based_fifo.sv
+Ftb/tb_counter_based_fifo.sv
+!i122 1
+Z14 L0 3 133
+R8
+r1
+!s85 0
+31
+!s108 1769439414.000000
+!s107 tb/tb_counter_based_fifo.sv|
+!s90 -work|work|tb/tb_counter_based_fifo.sv|
+!i113 1
+R12
+R13
+vtb_shift_fifo
+R1
+!s110 1769446718
+!i10b 1
+!s100 gEDKj1l:XCbSk?X<`T6`f3
+R3
+IDj12n3m<JZd_fe;kCBXi43
+R4
+S1
+R0
+w1769446698
+8tb/tb_shift_fifo.sv
+Ftb/tb_shift_fifo.sv
+!i122 3
+R14
+R8
+r1
+!s85 0
+31
+!s108 1769446718.000000
+!s107 tb/tb_shift_fifo.sv|
+!s90 -work|work|tb/tb_shift_fifo.sv|
+!i113 1
+R12
+R13
+vtb_sync_fifo
+R1
+R2
+!i10b 1
+!s100 bo>mnn;X0H58PQO=B?MgB0
+R3
+IBKLKz2RKLL_A:>YS>CPF33
+R4
+S1
+R0
+w1769448615
+8tb/tb_sync_fifo.sv
+Ftb/tb_sync_fifo.sv
+!i122 13
+R14
+R8
+r1
+!s85 0
+31
+R9
+!s107 tb/tb_sync_fifo.sv|
+!s90 -work|work|tb/tb_sync_fifo.sv|
+!i113 1
+R12
+R13
+vwrap_around_fifo
+R1
+R2
+!i10b 1
+!s100 8L8G:IO]SXmL_IQ`ZF]1=3
+R3
+IMkYElP7U4MGZ^UU0MW9091
+R4
+S1
+R0
+R5
+R6
+R7
+!i122 12
+L0 121 50
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 1
+R12
+R13

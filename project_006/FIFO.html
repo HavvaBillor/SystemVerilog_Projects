@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Synchronous FIFO: Micro-Architectural Analysis</title>
+    <style>
+        :root { --primary: #4fc3f7; --danger: #ff5252; --success: #4caf50; --bg: #0f172a; --card: #1e293b; }
+        body { font-family: 'Inter', 'Segoe UI', sans-serif; background: var(--bg); color: #f1f5f9; padding: 20px; line-height: 1.6; }
+        .dashboard { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+        .fifo-card { border: 1px solid #334155; background: var(--card); width: 320px; padding: 20px; border-radius: 12px; position: relative; }
+        
+        .status-light { position: absolute; top: 15px; right: 15px; width: 12px; height: 12px; border-radius: 50%; background: #444; border: 2px solid #000; }
+        .full-active { background: var(--danger); box-shadow: 0 0 10px var(--danger); }
+        .empty-active { background: #ffeb3b; box-shadow: 0 0 10px #ffeb3b; }
+
+        h3 { text-align: center; color: var(--primary); margin: 0 0 15px 0; font-size: 1.1rem; border-bottom: 1px solid #334155; padding-bottom: 10px; }
+        .slot-container { height: 200px; display: flex; flex-direction: column-reverse; background: #020617; border: 2px solid #475569; border-radius: 8px; overflow: hidden; }
+        .slot { height: 50px; border-bottom: 1px solid #1e293b; display: flex; align-items: center; justify-content: center; position: relative; font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+        .filled { background: #1e40af; color: #fff; font-weight: bold; }
+        
+        .ptr { position: absolute; right: 5px; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold; }
+        .w-ptr { background: var(--danger); color: white; top: 4px; }
+        .r-ptr { background: #facc15; color: black; bottom: 4px; }
+        
+        .controls { display: flex; gap: 8px; margin: 15px 0; }
+        button { flex: 1; padding: 12px; cursor: pointer; border: none; border-radius: 6px; font-weight: bold; font-size: 11px; transition: 0.2s; }
+        button:disabled { background: #334155 !important; cursor: not-allowed; opacity: 0.5; }
+        .btn-w { background: var(--success); color: white; }
+        .btn-r { background: var(--danger); color: white; }
+
+        .info-box { background: #0f172a; padding: 15px; border-radius: 8px; font-size: 12.5px; border-top: 3px solid var(--primary); min-height: 180px; }
+        .info-title { color: var(--primary); font-weight: bold; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Teknik Makale */
+        .article-section { max-width: 1000px; margin: 40px auto; background: var(--card); padding: 50px; border-radius: 20px; border-left: 8px solid var(--primary); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .article-section h2 { color: var(--primary); font-size: 2rem; margin-bottom: 25px; border-bottom: 2px solid #334155; padding-bottom: 10px; }
+        .article-section h3 { text-align: left; color: #facc15; border: none; margin-top: 30px; }
+        .highlight-box { background: #0f172a; padding: 20px; border-radius: 10px; border-left: 4px solid #facc15; margin: 20px 0; }
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align:center; letter-spacing: 2px; margin-bottom: 40px;">SYNCHRONOUS FIFO DESIGN MODELLING</h1>
+
+    <div class="dashboard">
+        <div class="fifo-card" id="card-cnt">
+            <div class="status-light" id="light-cnt"></div>
+            <h3>Counter-Based FIFO</h3>
+            <div class="slot-container" id="cnt-slots"></div>
+            <div class="controls">
+                <button class="btn-w" id="w-btn-cnt" onclick="writeCnt()">WRITE</button>
+                <button class="btn-r" id="r-btn-cnt" onclick="readCnt()">READ</button>
+            </div>
+            <div class="info-box">
+                <span class="info-title">Sayıcı Mimarisi</span>
+                Bellekteki doluluğu <b>'Count'</b> adında bağımsız bir register ile takip eder. 
+                <br><br>
+                <b>Mühendislik Farkı:</b> Tasarımı çok basittir ancak FPGA'de her yazma/okumada toplama-çıkarma yaptığı için yüksek hızlarda gecikme (prop. delay) yaratır. Küçük derinlikli kuyruklar için idealdir.
+            </div>
+        </div>
+
+        <div class="fifo-card" id="card-lin">
+            <div class="status-light" id="light-lin"></div>
+            <h3>Linear (Shift) FIFO</h3>
+            <div class="slot-container" id="lin-slots"></div>
+            <div class="controls">
+                <button class="btn-w" id="w-btn-lin" onclick="writeLin()">WRITE</button>
+                <button class="btn-r" id="r-btn-lin" onclick="readLin()">READ</button>
+            </div>
+            <div class="info-box">
+                <span class="info-title">Kaydırmalı Mimari</span>
+                Veriler sabit bir adrese yazılmaz; her okuma işleminde tüm veriler fiziksel olarak bir alt hücreye <b>transfer edilir</b>. 
+                <br><br>
+                <b>Mühendislik Farkı:</b> Verinin sürekli yer değiştirmesi devasa bir güç tüketimine (Dynamic Power) yol açar. Profesyonel tasarımlarda sadece 2-3 derinlikli bufferlar için kullanılır.
+            </div>
+        </div>
+
+        <div class="fifo-card" id="card-wrap">
+            <div class="status-light" id="light-wrap"></div>
+            <h3>Wrap-Around FIFO</h3>
+            <div class="slot-container" id="wrap-slots"></div>
+            <div class="controls">
+                <button class="btn-w" id="w-btn-wrap" onclick="writeWrap()">WRITE</button>
+                <button class="btn-r" id="r-btn-wrap" onclick="readWrap()">READ</button>
+            </div>
+            <div class="info-box">
+                <span class="info-title">Dairesel Pointer Mimarisi</span>
+                Veri bellekte çakılı kalır. Sadece <b>Yazma (W)</b> ve <b>Okuma (R)</b> adreslerini gösteren işaretçiler dairesel hareket eder.
+                <br><br>
+                <b>Mühendislik Farkı:</b> FPGA'in içindeki BRAM yapılarına en uygun modeldir. Güç tüketimi minimumdur ve asenkron FIFO tasarımına giden yoldaki en profesyonel basamaktır.
+            </div>
+        </div>
+    </div>
+
+    <div class="article-section">
+        <h2>Senkron FIFO: Mühendislik El Kitabı</h2>
+        <p>Dijital tasarım dünyasında FIFO (First-In First-Out), verinin geçici olarak depolandığı bir "elastik tampon" (elastic buffer) görevi görür. Sutherland'in "RTL Modeling with SystemVerilog" kitabında vurguladığı üzere, FIFO tasarımı bir mühendisin veri akış kontrolünü (flow control) ne kadar iyi yönettiğinin kanıtıdır.</p>
+
+        
+
+        <h3>1. Senkron FIFO Neyi Çözer?</h3>
+        <p>Senkron FIFO, aynı saat (clock) bölgesinde çalışan iki modül arasındaki hız farkını dengeler. Örneğin, bir işlemci saniyede 10 paket veri üretiyor ama UART modülü saniyede 2 paket gönderebiliyorsa, arada verinin kaybolmaması için bir FIFO kullanılması şarttır.</p>
+
+        <div class="highlight-box">
+            <b>Tasarımdaki Altın Kurallar:</b>
+            <ul>
+                <li><b>Overflow (Taşma):</b> FIFO doluyken (`Full=1`) veri yazılmamalıdır. Yazılırsa en eski veya en yeni veri bozulur.</li>
+                <li><b>Underflow (Boş Okuma):</b> FIFO boşken (`Empty=1`) okuma yapılmamalıdır. Yapılırsa "çöp veri" (garbage data) okunur.</li>
+            </ul>
+        </div>
+
+        <h3>2. Üç Mimari Arasındaki Kritik Karşılaştırma</h3>
+        <p>Bir mühendis olarak projenin gereksinimine göre karar vermelisin:</p>
+        <ul>
+            <li><b>Hız Öncelikliyse:</b> <u>Wrap-Around</u> kullanmalısın. Çünkü sadece pointer karşılaştırması yapar, matematiksel işlem (sayaç gibi) maliyeti düşüktür.</li>
+            <li><b>Kaynak Azlığı (Minimalist):</b> Çok küçük derinliklerde <u>Counter-Based</u> tercih edilebilir.</li>
+            <li><b>Anlık Yanıt (Latency):</b> <u>Linear FIFO</u> veriyi kapıya (çıkışa) yaklaştırır ancak enerji maliyeti nedeniyle büyük tasarımlarda asla tercih edilmez.</li>
+        </ul>
+
+        <h3>3. Flag (Bayrak) Üretiminde Hassasiyet</h3>
+        <p>Cliff Cummings'in makalelerinde belirttiği gibi, <b>Full</b> ve <b>Empty</b> sinyalleri "kombinasyonel" olarak üretilirse glitche (sinyal sıçramasına) neden olabilir. Sutherland bu yüzden bayrakların daima saat vuruşuyla (`posedge clk`) güncellenmesini veya çok dikkatli bir <code>always_comb</code> lojiğiyle kurulmasını önerir.</p>
+        
+        <p style="text-align: center; color: var(--primary); font-weight: bold; margin-top: 40px;">
+            Sutherland'in dediği gibi: "Doğru tasarlanmış bir FIFO, görünmez bir köprü gibidir; veriyi sessizce ve hatasız iletir."
+        </p>
+    </div>
+
+    <script>
+        const DEPTH = 4;
+        let cnt = 0, lin = [], w_ptr = 0, r_ptr = 0, wrap_mem = new Array(DEPTH).fill(null);
+
+        function updateUI() {
+            const isCntFull = (cnt === DEPTH), isCntEmpty = (cnt === 0);
+            const isLinFull = (lin.length === DEPTH), isLinEmpty = (lin.length === 0);
+            const isWrapFull = ((w_ptr ^ r_ptr) === DEPTH), isWrapEmpty = (w_ptr === r_ptr);
+
+            render('cnt-slots', i => i < cnt);
+            updateStatus('cnt', isCntFull, isCntEmpty);
+
+            render('lin-slots', i => lin[i]);
+            updateStatus('lin', isLinFull, isLinEmpty);
+
+            renderWrap();
+            updateStatus('wrap', isWrapFull, isWrapEmpty);
+        }
+
+        function updateStatus(id, full, empty) {
+            const light = document.getElementById(`light-${id}`);
+            document.getElementById(`w-btn-${id}`).disabled = full;
+            document.getElementById(`r-btn-${id}`).disabled = empty;
+            light.className = 'status-light' + (full ? ' full-active' : empty ? ' empty-active' : '');
+        }
+
+        function render(id, check) {
+            let h = ""; for(let i=0; i<DEPTH; i++) h += `<div class="slot ${check(i)?'filled':''}">${check(i)?'0x'+(i*13+65).toString(16).toUpperCase():''}</div>`;
+            document.getElementById(id).innerHTML = h;
+        }
+
+        function renderWrap() {
+            let h = ""; 
+            for(let i=0; i<DEPTH; i++) {
+                let p = "";
+                if(w_ptr % DEPTH === i) p += `<span class="ptr w-ptr">W</span>`;
+                if(r_ptr % DEPTH === i) p += `<span class="ptr r-ptr">R</span>`;
+                h += `<div class="slot ${wrap_mem[i]?'filled':''}">${p} ${wrap_mem[i]?'0x'+(i*17+72).toString(16).toUpperCase():''}</div>`;
+            }
+            document.getElementById('wrap-slots').innerHTML = h;
+        }
+
+        function writeCnt() { if(cnt < DEPTH) cnt++; updateUI(); }
+        function readCnt() { if(cnt > 0) cnt--; updateUI(); }
+        function writeLin() { if(lin.length < DEPTH) lin.unshift(true); updateUI(); }
+        function readLin() { if(lin.length > 0) lin.pop(); updateUI(); }
+        function writeWrap() { if((w_ptr ^ r_ptr) != DEPTH) { wrap_mem[w_ptr%DEPTH]=true; w_ptr=(w_ptr+1)%(2*DEPTH); } updateUI(); }
+        function readWrap() { if(w_ptr != r_ptr) { wrap_mem[r_ptr%DEPTH]=null; r_ptr=(r_ptr+1)%(2*DEPTH); } updateUI(); }
+
+        updateUI();
+    </script>
+</body>
+</html>

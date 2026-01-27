@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Professional Async FIFO CDC Lab</title>
+    <style>
+        :root { --w-clk: #00ff88; --r-clk: #00d4ff; --bg: #0b0f19; --accent: #58a6ff; --danger: #f85149; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: #e2e8f0; margin: 0; padding: 30px; line-height: 1.5; }
+        .wrapper { max-width: 1300px; margin: auto; }
+        
+        /* High-End Technical Header */
+        .pro-header { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px; }
+        .tech-card { background: #161b22; border-top: 4px solid var(--accent); padding: 25px; border-radius: 4px 4px 12px 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .tech-card h2 { color: var(--accent); font-size: 1.1rem; margin-top: 0; text-transform: uppercase; letter-spacing: 1px; }
+        .tech-card p { font-size: 0.85rem; color: #8b949e; text-align: justify; }
+        .math { font-family: 'Fira Code', monospace; background: #000; padding: 2px 5px; color: #d2a8ff; border-radius: 3px; }
+
+        /* Simulator Layout */
+        .sim-container { display: grid; grid-template-columns: 350px 1fr 350px; gap: 25px; align-items: start; }
+        .domain-block { background: #0d1117; border: 1px solid #30363d; padding: 20px; border-radius: 12px; position: relative; }
+        .w-side { border-top: 4px solid var(--w-clk); }
+        .r-side { border-top: 4px solid var(--r-clk); }
+
+        /* Pointer Viz */
+        .ptr-display { background: #000; padding: 15px; border-radius: 8px; font-family: 'Fira Code', monospace; margin-bottom: 20px; }
+        .bit-group { display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px; }
+        .msb { color: var(--danger); font-weight: bold; font-size: 1.2rem; border-right: 1px solid #333; padding-right: 10px; }
+        
+        /* RAM Visual */
+        .ram-viz { background: #0d1117; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; }
+        .ram-row { display: flex; border-bottom: 1px solid #21262d; height: 48px; align-items: center; position: relative; }
+        .ram-row.active-data { background: rgba(88, 166, 255, 0.08); }
+        .addr-cell { width: 45px; text-align: center; color: #484f58; font-size: 0.75rem; border-right: 1px solid #21262d; }
+        .data-cell { flex: 1; text-align: center; font-weight: 600; font-family: 'Fira Code'; font-size: 0.95rem; }
+        
+        .ptr-flag { position: absolute; padding: 2px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: bold; text-transform: uppercase; }
+        .w-ptr { background: var(--w-clk); color: #000; right: 10px; }
+        .r-ptr { background: var(--r-clk); color: #000; left: 55px; }
+
+        /* Status Flags */
+        .status-indicator { padding: 15px; border-radius: 8px; font-weight: bold; text-align: center; border: 1px solid #333; margin-top: 20px; letter-spacing: 1px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .full-on { background: rgba(248, 81, 73, 0.15); color: var(--danger); border-color: var(--danger); box-shadow: 0 0 20px rgba(248, 81, 73, 0.2); }
+        .empty-on { background: rgba(227, 179, 65, 0.15); color: #e3b341; border-color: #e3b341; box-shadow: 0 0 20px rgba(227, 179, 65, 0.2); }
+
+        /* Controls */
+        button { width: 100%; padding: 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.9rem; transition: 0.2s; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-write { background: var(--w-clk); color: #0b0f19; box-shadow: 0 4px 0 #064e3b; }
+        .btn-read { background: var(--r-clk); color: #0b0f19; box-shadow: 0 4px 0 #1e3a8a; }
+        button:active { transform: translateY(4px); box-shadow: none; }
+        
+        .cdc-bridge { grid-column: 1 / span 3; background: #0d1117; border: 1px dashed #444; padding: 20px; border-radius: 12px; margin-top: 30px; text-align: center; }
+        .sync-val { color: var(--accent); font-family: 'Fira Code'; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <h1 style="text-align:center; font-weight: 800; letter-spacing: -1px; margin-bottom: 40px;">ASYNCHRONOUS FIFO DESIGN <span style="font-weight: 200; color: #8b949e;">| CDC INTERACTIVE</span></h1>
+
+    <div class="pro-header">
+        <div class="tech-card">
+            <h2>1. Metastability & Gray Code Rationale</h2>
+            <p>In multi-clock designs, sampling an asynchronous signal during its transition window can cause the output to settle in a non-deterministic state (**Metastability**). Synchronizing binary counters is strictly prohibited because multiple bit transitions (e.g., <span class="math">0111 -> 1000</span>) can lead to sampling an invalid intermediate value. **Gray Code** solves this by ensuring that only <strong>one bit</strong> changes per increment, guaranteeing that a synchronizer will sample either the old or the new value, but never a garbage value.</p>
+        </div>
+        <div class="tech-card">
+            <h2>2. The $n+1$ Pointer & Wrap-Around Logic</h2>
+            <p>To distinguish between <strong>Full</strong> and <strong>Empty</strong>, Cummings Style #1 employs an $(n+1)$-bit pointer for a $2^n$ deep FIFO.
+            <br>• <strong>FIFO Empty:</strong> Occurs when the write pointer and read pointer are identical: <span class="math">wptr_gray == rptr_gray</span>.
+            <br>• <strong>FIFO Full:</strong> Occurs when the pointers' MSBs differ, the second MSBs differ, but the remaining LSBs are equal. This accounts for the 180-degree phase shift in Gray code upon wrap-around.</p>
+        </div>
+    </div>
+
+    <div class="sim-container">
+        <div class="domain-block w-side">
+            <h3 style="color:var(--w-clk); font-size: 0.9rem; margin-top: 0;">WRITE_DOMAIN (WCLK)</h3>
+            <div class="ptr-display">
+                <div class="bit-group"><span>Binary:</span> <div><span class="msb" id="w_bin_msb">0</span><span id="w_bin_lsb">000</span></div></div>
+                <div class="bit-group"><span>Gray:</span> <span id="w_gray" style="color:var(--w-clk)">0000</span></div>
+            </div>
+            <button class="btn-write" onclick="push()">Manual WINC</button>
+            <div id="full_flag" class="status-indicator">STATUS: NORMAL</div>
+        </div>
+
+        <div class="ram-viz" id="ram_ui"></div>
+
+        <div class="domain-block r-side">
+            <h3 style="color:var(--r-clk); font-size: 0.9rem; margin-top: 0;">READ_DOMAIN (RCLK)</h3>
+            <div class="ptr-display">
+                <div class="bit-group"><span>Binary:</span> <div><span class="msb" id="r_bin_msb">0</span><span id="r_bin_lsb">000</span></div></div>
+                <div class="bit-group"><span>Gray:</span> <span id="r_gray" style="color:var(--r-clk)">0000</span></div>
+            </div>
+            <button class="btn-read" onclick="pop()">Manual RINC</button>
+            <div id="empty_flag" class="status-indicator empty-on">STATUS: EMPTY</div>
+        </div>
+
+        <div class="cdc-bridge">
+            <h3 style="font-size: 0.8rem; color: #8b949e; margin-top: 0;">2-STAGE SYNCHRONIZER BRIDGE (CDC)</h3>
+            <div style="display: flex; justify-content: space-around;">
+                <div>Wptr Gray &rarr; RCLK Domain: <span class="sync-val" id="w_sync">0000</span></div>
+                <div>Rptr Gray &rarr; WCLK Domain: <span class="sync-val" id="r_sync">0000</span></div>
+            </div>
+            <p style="font-size: 0.7rem; color: #484f58; margin-top: 15px;">Note: Pointers cross the bridge with a deliberate 2-cycle latency simulation.</p>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    const DEPTH = 8;
+    let ram = new Array(DEPTH).fill(null);
+    let wptr = 0; let rptr = 0;
+    let wptr_sync = "0000"; let rptr_sync = "0000";
+
+    const toGray = (n) => (n ^ (n >> 1)).toString(2).padStart(4, '0');
+
+    function update() {
+        // Update Write Side
+        document.getElementById('w_bin_msb').innerText = (wptr >> 3) & 1;
+        document.getElementById('w_bin_lsb').innerText = (wptr & 7).toString(2).padStart(3, '0');
+        document.getElementById('w_gray').innerText = toGray(wptr);
+
+        // Update Read Side
+        document.getElementById('r_bin_msb').innerText = (rptr >> 3) & 1;
+        document.getElementById('r_bin_lsb').innerText = (rptr & 7).toString(2).padStart(3, '0');
+        document.getElementById('r_gray').innerText = toGray(rptr);
+
+        // Flags Logic (Cummings Style)
+        let wg = toGray(wptr);
+        let rg = toGray(rptr);
+
+        // FULL: MSB and 2nd MSB inverted, others same
+        let isFull = (wg[0] !== rptr_sync[0] && wg[1] !== rptr_sync[1] && wg.slice(2) === rptr_sync.slice(2));
+        let isEmpty = (rg === wptr_sync);
+
+        const fFlag = document.getElementById('full_flag');
+        fFlag.innerText = isFull ? "FLAG: FULL" : "STATUS: NORMAL";
+        fFlag.className = isFull ? "status-indicator full-on" : "status-indicator";
+
+        const eFlag = document.getElementById('empty_flag');
+        eFlag.innerText = isEmpty ? "FLAG: EMPTY" : "STATUS: NORMAL";
+        eFlag.className = isEmpty ? "status-indicator empty-on" : "status-indicator";
+
+        // RAM UI
+        let html = "";
+        for(let i=0; i<DEPTH; i++) {
+            let isW = (wptr % DEPTH) === i;
+            let isR = (rptr % DEPTH) === i;
+            html += `<div class="ram-row ${ram[i] ? 'active-data' : ''}">
+                <div class="addr-cell">${i}</div>
+                <div class="data-cell">${ram[i] || '---'}</div>
+                ${isW ? '<div class="ptr-flag w-ptr">W_ADDR</div>' : ''}
+                ${isR ? '<div class="ptr-flag r-ptr">R_ADDR</div>' : ''}
+            </div>`;
+        }
+        document.getElementById('ram_ui').innerHTML = html;
+        document.getElementById('w_sync').innerText = wptr_sync;
+        document.getElementById('r_sync').innerText = rptr_sync;
+    }
+
+    function push() {
+        let wg = toGray(wptr);
+        if (wg[0] !== rptr_sync[0] && wg[1] !== rptr_sync[1] && wg.slice(2) === rptr_sync.slice(2)) return;
+        ram[wptr % DEPTH] = "DATA_" + Math.floor(Math.random()*256).toString(16).toUpperCase();
+        wptr = (wptr + 1) % 16;
+        update();
+    }
+
+    function pop() {
+        if (toGray(rptr) === wptr_sync) return;
+        ram[rptr % DEPTH] = null;
+        rptr = (rptr + 1) % 16;
+        update();
+    }
+
+    // CDC Bridge Simulation (2-Stage Synchronizer Latency)
+    setInterval(() => {
+        wptr_sync = toGray(wptr);
+        rptr_sync = toGray(rptr);
+        update();
+    }, 1000); // 1s bridge latency
+
+    update();
+</script>
+</body>
+</html>

@@ -9,31 +9,156 @@ z2
 !i10f 100
 cModel Technology
 Z0 d/home/subat/SystemVerilog_Projects/project_006
-vcounter_based_fifo
+vasync_fifo_mem
 Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
-Z2 !s110 1769448619
+Z2 !s110 1769528020
 !i10b 1
-!s100 Ql[C^ci0TZ@VF16IhdP9>1
+!s100 6oB]^YR6Wa2dHKY7JQT6K0
 Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
-I<S1;O<fC_9I8d@6DP5Eg53
+I_5;^dN@:hHHmW9;8`ehZ_0
 Z4 VDg1SIo80bB@j0V0VzS_@n1
 S1
 R0
-Z5 w1769447964
-Z6 8rtl/sync_fifo.sv
-Z7 Frtl/sync_fifo.sv
-!i122 12
-L0 5 58
-Z8 OV;L;2020.1;71
+w1769516707
+8rtl/async_fifo_mem.sv
+Frtl/async_fifo_mem.sv
+!i122 40
+L0 1 34
+Z5 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z9 !s108 1769448619.000000
-Z10 !s107 rtl/sync_fifo.sv|
-Z11 !s90 -work|work|rtl/sync_fifo.sv|
+Z6 !s108 1769528020.000000
+Z7 !s107 rtl/sync_fifo.sv|rtl/async_wptr_full.sv|rtl/async_sync_ptr.sv|rtl/async_rptr_empty.sv|rtl/async_fifo_top.sv|rtl/async_fifo_mem.sv|
+Z8 !s90 -work|work|rtl/async_fifo_mem.sv|rtl/async_fifo_top.sv|rtl/async_rptr_empty.sv|rtl/async_sync_ptr.sv|rtl/async_wptr_full.sv|rtl/sync_fifo.sv|
 !i113 1
-Z12 o-work work
-Z13 tCvgOpt 0
+Z9 o-work work
+Z10 tCvgOpt 0
+vasync_fifo_top
+R1
+R2
+!i10b 1
+!s100 AZzdl:3cE:dbK7f4>I4TF2
+R3
+IeMJ@P@gPhU1^GT82XN9XX3
+R4
+S1
+R0
+w1769525903
+8rtl/async_fifo_top.sv
+Frtl/async_fifo_top.sv
+!i122 40
+L0 1 81
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+R10
+vasync_rptr_empty
+R1
+R2
+!i10b 1
+!s100 j8m?7TQ2FZWJ28P6Eckj<3
+R3
+IZX_d:Z1h=k_;cgS2k]G4g2
+R4
+S1
+R0
+w1769524386
+8rtl/async_rptr_empty.sv
+Frtl/async_rptr_empty.sv
+!i122 40
+Z11 L0 1 44
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+R10
+vasync_sync_ptr
+R1
+R2
+!i10b 1
+!s100 H0CMUD^dzDdf?]K?Q3h=L2
+R3
+IO^?ERP]PbeGhT]LXIiH;^1
+R4
+S1
+R0
+w1769517900
+8rtl/async_sync_ptr.sv
+Frtl/async_sync_ptr.sv
+!i122 40
+L0 1 21
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+R10
+vasync_wptr_full
+R1
+R2
+!i10b 1
+!s100 jn[4W;;_blcNWJ^GiTGQ63
+R3
+IS82:=LGE;eJ^NnlmIbTlE3
+R4
+S1
+R0
+w1769524405
+8rtl/async_wptr_full.sv
+Frtl/async_wptr_full.sv
+!i122 40
+R11
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+R10
+vcounter_based_fifo
+R1
+R2
+!i10b 1
+!s100 Ql[C^ci0TZ@VF16IhdP9>1
+R3
+I<S1;O<fC_9I8d@6DP5Eg53
+R4
+S1
+R0
+Z12 w1769450034
+Z13 8rtl/sync_fifo.sv
+Z14 Frtl/sync_fifo.sv
+!i122 40
+L0 5 58
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+R10
 vshift_fifo
 R1
 R2
@@ -44,21 +169,46 @@ IL`z[4AKYMHKWM2IQ3`X5X0
 R4
 S1
 R0
-R5
-R6
-R7
-!i122 12
+R12
+R13
+R14
+!i122 40
 L0 65 55
-R8
+R5
 r1
 !s85 0
 31
+R6
+R7
+R8
+!i113 1
 R9
 R10
-R11
+vtb_async_fifo
+R1
+!s110 1769528021
+!i10b 1
+!s100 3hoaQJkKQ@O@2?C0^1B282
+R3
+Ii1DA2>=<:>5dV5AASM01h3
+R4
+S1
+R0
+w1769528017
+8tb/tb_async_fifo.sv
+Ftb/tb_async_fifo.sv
+!i122 41
+L0 3 143
+R5
+r1
+!s85 0
+31
+R6
+!s107 tb/tb_async_fifo.sv|
+!s90 -work|work|tb/tb_async_fifo.sv|
 !i113 1
-R12
-R13
+R9
+R10
 vtb_counter_based_fifo
 R1
 !s110 1769439414
@@ -73,8 +223,8 @@ w1769439405
 8tb/tb_counter_based_fifo.sv
 Ftb/tb_counter_based_fifo.sv
 !i122 1
-Z14 L0 3 133
-R8
+Z15 L0 3 133
+R5
 r1
 !s85 0
 31
@@ -82,8 +232,8 @@ r1
 !s107 tb/tb_counter_based_fifo.sv|
 !s90 -work|work|tb/tb_counter_based_fifo.sv|
 !i113 1
-R12
-R13
+R9
+R10
 vtb_shift_fifo
 R1
 !s110 1769446718
@@ -98,8 +248,8 @@ w1769446698
 8tb/tb_shift_fifo.sv
 Ftb/tb_shift_fifo.sv
 !i122 3
-R14
-R8
+R15
+R5
 r1
 !s85 0
 31
@@ -107,11 +257,11 @@ r1
 !s107 tb/tb_shift_fifo.sv|
 !s90 -work|work|tb/tb_shift_fifo.sv|
 !i113 1
-R12
-R13
+R9
+R10
 vtb_sync_fifo
 R1
-R2
+!s110 1769448619
 !i10b 1
 !s100 bo>mnn;X0H58PQO=B?MgB0
 R3
@@ -123,39 +273,39 @@ w1769448615
 8tb/tb_sync_fifo.sv
 Ftb/tb_sync_fifo.sv
 !i122 13
-R14
-R8
+R15
+R5
 r1
 !s85 0
 31
-R9
+!s108 1769448619.000000
 !s107 tb/tb_sync_fifo.sv|
 !s90 -work|work|tb/tb_sync_fifo.sv|
 !i113 1
-R12
-R13
+R9
+R10
 vwrap_around_fifo
 R1
 R2
 !i10b 1
-!s100 8L8G:IO]SXmL_IQ`ZF]1=3
+!s100 f_Ij548<K]YIThLi5]?o91
 R3
-IMkYElP7U4MGZ^UU0MW9091
+IYWC4:OX[i^E<R]1SlMY:83
 R4
 S1
 R0
+R12
+R13
+R14
+!i122 40
+L0 123 50
 R5
-R6
-R7
-!i122 12
-L0 121 50
-R8
 r1
 !s85 0
 31
+R6
+R7
+R8
+!i113 1
 R9
 R10
-R11
-!i113 1
-R12
-R13

@@ -1,15 +1,151 @@
-# vsim -c -work work tb_async_fifo -do "vcd file wave.vcd; vcd add -r /*; run -all; quit" 
-# Start time: 18:33:41 on Jan 27,2026
-# Loading sv_std.std
-# Loading work.tb_async_fifo
-# Loading work.async_fifo_top
-# Loading work.async_sync_ptr
-# Loading work.async_fifo_mem
-# Loading work.async_rptr_empty
-# Loading work.async_wptr_full
-# vcd file wave.vcd
-#  vcd add -r /*
-#  run -all
+`timescale 1ns / 1ps
+
+module tb_async_fifo;
+
+  localparam DATA_WIDTH = 8;  // for counter_based and shift fifo, it is used 6
+  localparam ADDR_WIDTH = 4;
+
+  logic                   wclk;
+  logic                   rclk;
+  logic                   wrst_n;
+  logic                   rrst_n;
+  logic                   w_en;
+  logic                   r_en;
+  logic [DATA_WIDTH -1:0] w_data;
+  logic [ DATA_WIDTH-1:0] r_data;
+  logic                   empty;
+  logic                   full;
+
+
+  async_fifo_top #(
+      .DATA_WIDTH(DATA_WIDTH),
+      .ADDR_WIDTH(ADDR_WIDTH)
+  ) async_fifo (
+      .*
+  );
+
+
+  // write clk 100MHz
+  initial begin
+    wclk = 0;
+  end
+  always #5ns wclk = ~wclk;
+
+  // read clk 40MHz
+  initial begin
+    rclk = 0;
+  end
+  always #12.5ns rclk = ~rclk;
+
+  logic [7:0] test_data_array[] = {'h1, 'h2, 'h3, 'h4, 'h5, 'h6, 'h7, 'h8, 'h9, 'h10, 'h11, 'h12, 'h13, 'h14, 'h15, 'h16, 'h17};
+  logic [7:0] my_que         [$                                                                                                 ];
+
+  task write_fifo(input logic [7:0] data);
+    @(negedge wclk);
+    w_data <= data;
+    w_en   <= 1'b1;
+    @(posedge wclk);
+    if (full) begin
+      $warning("WARNING!: You attempted to write data when FIFO was FULL");
+    end else begin
+      my_que.push_back(data);
+      $info("INFO: [WRITE] Data: %h is written", data);
+    end
+    w_en <= 1'b0;
+  endtask
+
+  task read_fifo();
+    logic [7:0] expected_data;
+    @(negedge rclk);
+
+    if (my_que.size() == 0) begin
+
+      if (!empty) begin
+        $error("ERROR! QUE is empty but FIFO is NOT!");
+      end else begin
+        $warning("WARNING! You attempted to read data when FIFO and QUE were empty");
+      end
+
+    end else begin
+      // latency tolerans
+      while (empty) begin
+        @(posedge rclk);
+      end
+
+      expected_data = my_que.pop_front();
+      if (r_data !== expected_data) begin
+        $error("ERROR! Expected data: %h Received data: %h", expected_data, r_data);
+      end else begin
+        $info("INFO: Successful reading: %h", r_data);
+      end
+    end
+
+    r_en <= 1'b1;
+    @(posedge rclk);
+    #1;
+    r_en <= 1'b0;
+
+  endtask
+
+  initial begin
+
+    wrst_n <= 1'b0;
+    rrst_n <= 1'b0;
+    r_en   <= 1'b0;
+    w_en   <= 1'b0;
+    w_data <= '0;
+    #100ns;
+    wrst_n <= 1'b1;
+    rrst_n <= 1'b1;
+    #20ns;
+
+    $info("--- TEST SCENARIO IS STARTED ---\n");
+    $info("-------------------------------------------------------------------------\n");
+    $info("TEST 1: Reading data when FIFO is empty----------------------------------\n");
+    read_fifo();
+    #20;
+
+    $info("----------------------------------------------------------------------- \n");
+    $info("TEST 2: Writing data and testing overflow-------------------------------\n");
+    for (int i = 0; i < test_data_array.size(); ++i) begin
+      write_fifo(test_data_array[i]);
+    end
+    #100;
+
+    $info("--------------------------------------------------------------------------- \n");
+    $info("TEST 3: Reading data------------------------------------------------------- \n");
+    for (int i = 0; i < test_data_array.size(); ++i) begin
+      read_fifo();
+    end
+
+    $info("------------------------------------------------------------------------------ \n");
+    $info("TEST 4: Simultaneous Read & Write--------------------------------------------- \n");
+
+    write_fifo(8'hA1);
+    write_fifo(8'hA2);
+    #20ns;
+
+    fork
+      write_fifo(8'hA3);
+      read_fifo();
+    join
+    #20ns;
+
+    while (my_que.size() > 0) begin
+      read_fifo();
+    end
+
+    $info("\n -------------------- TESTS FINISHED SUCCESSFULLY -----------------------");
+    #100;
+    $finish;
+
+  end
+
+
+endmodule
+
+
+/*
 # ** Info: --- TEST SCENARIO IS STARTED ---
 #    Time: 120 ns  Scope: tb_async_fifo File: tb/tb_async_fifo.sv Line: 102
 # ** Info: -------------------------------------------------------------------------
@@ -117,3 +253,5 @@
 #    Time: 1138500 ps  Iteration: 0  Instance: /tb_async_fifo
 # End time: 18:33:42 on Jan 27,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 3
+
+*/

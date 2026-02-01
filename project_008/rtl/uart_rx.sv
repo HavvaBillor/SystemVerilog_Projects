@@ -17,7 +17,7 @@ module uart_rx #(
     input logic rx_en_i,  // communication enable
     input logic rx_ren_i,  // read enable
     input logic rx_bit_i,
-    output logic [DATA_WIDTH -1:0] dout_o,  // data_width bit data input
+    output logic [DATA_WIDTH -1:0] dout_o,  // data_width bit data output
     output logic empty_o,
     output logic full_o
 );

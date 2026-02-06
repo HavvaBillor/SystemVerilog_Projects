@@ -15,15 +15,15 @@ module tb_bin_to_bcd ();
 
     binary_in = 16'd256;
     #10;
-    $display("Input: %d | BCD: %h (Beklenen: 0256)", binary_in, bcd_o);
+    $display("Input_decimal: %d | BCD_hex: %h (Beklenen: 0256)", binary_in, bcd_o);
 
     binary_in = 16'd1234;
     #10;
-    $display("Input: %d | BCD: %h (Beklenen: 1234)", binary_in, bcd_o);
+    $display("Input_decimal: %d | BCD_hex: %h (Beklenen: 1234)", binary_in, bcd_o);
 
     binary_in = 16'd4995;
     #10;
-    $display("Input: %d | BCD: %h (Beklenen: 4995)", binary_in, bcd_o);
+    $display("Input_decimal: %d | BCD_hex: %h (Beklenen: 4995)", binary_in, bcd_o);
 
     #10;
     $finish;

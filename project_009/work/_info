@@ -9,31 +9,56 @@ z2
 !i10f 100
 cModel Technology
 Z0 d/home/subat/SystemVerilog_Projects/project_009
-vbcd_to_sevenseg
+valu
 Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
-Z2 !s110 1770122626
+Z2 !s110 1770406581
+!i10b 1
+!s100 Co<8RWc7Ugcnme:VeH>=Y1
+Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IeldcEM5iTQgkZMMJI3nUn1
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+S1
+R0
+w1770405890
+8rtl/alu.sv
+Frtl/alu.sv
+!i122 149
+L0 1 112
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z6 !s108 1770406581.000000
+Z7 !s107 rtl/uart_tx.sv|rtl/uart_rx.sv|rtl/input_processor.sv|rtl/fifo.sv|rtl/bin_to_bcd.sv|rtl/bcd_to_sevenseg.sv|rtl/alu.sv|
+Z8 !s90 -work|work|rtl/alu.sv|rtl/bcd_to_sevenseg.sv|rtl/bin_to_bcd.sv|rtl/fifo.sv|rtl/input_processor.sv|rtl/uart_rx.sv|rtl/uart_tx.sv|
+!i113 1
+Z9 o-work work
+Z10 tCvgOpt 0
+vbcd_to_sevenseg
+R1
+R2
 !i10b 1
 !s100 eWT[=eSV@`XP86Y`eR?P01
-Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
+R3
 I5QCUVZljPHY4O7`c>XKQU3
-Z4 VDg1SIo80bB@j0V0VzS_@n1
+R4
 S1
 R0
 w1769209844
 8rtl/bcd_to_sevenseg.sv
 Frtl/bcd_to_sevenseg.sv
-!i122 26
+!i122 149
 L0 1 33
-Z5 OV;L;2020.1;71
+R5
 r1
 !s85 0
 31
-Z6 !s108 1770122626.000000
-Z7 !s107 rtl/uart_tx.sv|rtl/uart_rx.sv|rtl/fifo.sv|rtl/calculator_core.sv|rtl/bin_to_bcd.sv|rtl/bcd_to_sevenseg.sv|
-Z8 !s90 -work|work|rtl/bcd_to_sevenseg.sv|rtl/bin_to_bcd.sv|rtl/calculator_core.sv|rtl/fifo.sv|rtl/uart_rx.sv|rtl/uart_tx.sv|
+R6
+R7
+R8
 !i113 1
-Z9 o-work work
-Z10 tCvgOpt 0
+R9
+R10
 vbin_to_bcd
 R1
 R2
@@ -47,7 +72,7 @@ R0
 w1770122622
 8rtl/bin_to_bcd.sv
 Frtl/bin_to_bcd.sv
-!i122 26
+!i122 149
 L0 1 24
 R5
 r1
@@ -61,7 +86,7 @@ R9
 R10
 vcalculatore_core
 R1
-R2
+!s110 1770122626
 !i10b 1
 !s100 jQA76e35D1jo_g7A@UgKN2
 R3
@@ -78,9 +103,9 @@ R5
 r1
 !s85 0
 31
-R6
-R7
-R8
+!s108 1770122626.000000
+!s107 rtl/uart_tx.sv|rtl/uart_rx.sv|rtl/fifo.sv|rtl/calculator_core.sv|rtl/bin_to_bcd.sv|rtl/bcd_to_sevenseg.sv|
+!s90 -work|work|rtl/bcd_to_sevenseg.sv|rtl/bin_to_bcd.sv|rtl/calculator_core.sv|rtl/fifo.sv|rtl/uart_rx.sv|rtl/uart_tx.sv|
 !i113 1
 R9
 R10
@@ -97,8 +122,33 @@ R0
 Z11 w1770115703
 Z12 8rtl/fifo.sv
 Z13 Frtl/fifo.sv
-!i122 26
+!i122 149
 L0 5 58
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+R10
+vinput_processor
+R1
+R2
+!i10b 1
+!s100 FkiQ2ITR`O]=FU93=o1;E1
+R3
+I=[fbL[Ye9A8BBE?Dk6W^<3
+R4
+S1
+R0
+w1770397315
+8rtl/input_processor.sv
+Frtl/input_processor.sv
+!i122 149
+L0 1 125
 R5
 r1
 !s85 0
@@ -122,7 +172,7 @@ R0
 R11
 R12
 R13
-!i122 26
+!i122 149
 L0 65 55
 R5
 r1
@@ -134,28 +184,78 @@ R8
 !i113 1
 R9
 R10
-vtb_bin_to_bcd
+vtb_alu
 R1
-R2
+!s110 1770406582
 !i10b 1
-!s100 0mIU`X:KDfMUEXTJPc`7j0
+!s100 KPPiGTf3MjZGWW?]l=c253
 R3
-I[zJCkIJD>dEJ9W6ZmLfAF0
+IRC?[z]?TXW?AVV_gN@8ob0
 R4
 S1
 R0
-w1770122589
-8tb/tb_bin_to_bcd.sv
-Ftb/tb_bin_to_bcd.sv
-!i122 27
-L0 3 31
+w1770406579
+8tb/tb_alu.sv
+Ftb/tb_alu.sv
+!i122 150
+L0 3 71
 R5
 r1
 !s85 0
 31
 R6
+!s107 tb/tb_alu.sv|
+!s90 -work|work|tb/tb_alu.sv|
+!i113 1
+R9
+R10
+vtb_bin_to_bcd
+R1
+!s110 1770377301
+!i10b 1
+!s100 Nb[TSMmhPVUBGiWY;0;mg0
+R3
+IPnlNOSAazDdVCMOMD7oi;0
+R4
+S1
+R0
+w1770377297
+8tb/tb_bin_to_bcd.sv
+Ftb/tb_bin_to_bcd.sv
+!i122 39
+L0 3 30
+R5
+r1
+!s85 0
+31
+!s108 1770377301.000000
 !s107 tb/tb_bin_to_bcd.sv|
 !s90 -work|work|tb/tb_bin_to_bcd.sv|
+!i113 1
+R9
+R10
+vtb_input_processor
+R1
+!s110 1770406253
+!i10b 1
+!s100 `A4DAOGUkRk9hD3T4EjT:0
+R3
+ImH<0[198]IdYJNNlD6U9o2
+R4
+S1
+R0
+w1770398901
+8tb/tb_input_processor.sv
+Ftb/tb_input_processor.sv
+!i122 138
+L0 3 70
+R5
+r1
+!s85 0
+31
+!s108 1770406253.000000
+!s107 tb/tb_input_processor.sv|
+!s90 -work|work|tb/tb_input_processor.sv|
 !i113 1
 R9
 R10
@@ -172,7 +272,7 @@ R0
 w1770115709
 8rtl/uart_rx.sv
 Frtl/uart_rx.sv
-!i122 26
+!i122 149
 L0 9 135
 R5
 r1
@@ -197,7 +297,7 @@ R0
 w1770115713
 8rtl/uart_tx.sv
 Frtl/uart_tx.sv
-!i122 26
+!i122 149
 L0 9 144
 R5
 r1
@@ -222,7 +322,7 @@ R0
 R11
 R12
 R13
-!i122 26
+!i122 149
 L0 123 50
 R5
 r1

@@ -1,14 +1,21 @@
-# vsim -c -work work tb_bin_to_bcd -do "run -all; quit" 
-# Start time: 15:43:46 on Feb 03,2026
+# vsim -c -work work tb_alu -do "run -all; quit" 
+# Start time: 22:36:22 on Feb 06,2026
 # Loading sv_std.std
-# Loading work.tb_bin_to_bcd
-# Loading work.bin_to_bcd
+# Loading work.tb_alu
+# Loading work.alu
 # run -all
-# --- BCD Testi Basliyor ---
-# Input:   256 | BCD: 0256 (Beklenen: 0256)
-# Input:  1234 | BCD: 1234 (Beklenen: 1234)
-# Input:  4995 | BCD: 4995 (Beklenen: 4995)
-# ** Note: $finish    : tb/tb_bin_to_bcd.sv(30)
-#    Time: 40 ns  Iteration: 0  Instance: /tb_bin_to_bcd
-# End time: 15:43:47 on Feb 03,2026, Elapsed time: 0:00:01
+# 
+# --- Simulation is started ---
+# 
+# [PASS] Op:00 | A:   15 B:   15 | Result:        30
+# [PASS] Op:01 | A:   20 B:    8 | Result:        12
+# [PASS] Op:10 | A:   12 B:  120 | Result:      1440
+# [PASS] Op:11 | A:   15 B:    2 | Result:        75
+# [PASS] Op:11 | A:  135 B:    7 | Result:       192
+# 
+# --- Tests are completed ---
+# 
+# ** Note: $finish    : tb/tb_alu.sv(70)
+#    Time: 1750 ns  Iteration: 1  Instance: /tb_alu
+# End time: 22:36:23 on Feb 06,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0

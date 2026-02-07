@@ -84,7 +84,6 @@ module input_processor #(
           current_num <= '0;
           if (!rx_empty_in && rx_ren_o && is_digit) begin
             current_num <= (current_num * 10) + (rx_data_in - 8'h30);
-
           end
         end
         GET_NUM1: begin
@@ -105,6 +104,7 @@ module input_processor #(
         end
         GET_NUM2: begin
           if (rx_ren_o) begin
+
             if (is_digit) begin
               current_num <= (current_num * 10) + (rx_data_in - 8'h30);
             end else begin
@@ -120,6 +120,5 @@ module input_processor #(
   assign num1_o     = n1_reg;
   assign num2_o     = n2_reg;
   assign operator_o = op_reg;
-
 
 endmodule
